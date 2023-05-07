@@ -1,6 +1,7 @@
 #-*- coding: utf-8 -*-
 
 from odoo import models, fields, api
+import secrets
 
 class modulo2_provincia(models.Model):
     _name = 'modulo2.provincia'
@@ -28,7 +29,7 @@ class modulo2_modelo(models.Model):
     description = fields.Text(string="Descripción", default="Descripción por defecto")
     description2 = fields.Html(string="Descripción HTML")
 
-    password = fields.Char(string="Contraseña", required = True, compute='_compute_password')
+    password = fields.Char(string="Contraseña", compute='_compute_password', store=True)
     last_login = fields.Datetime(string="Último login", default=fields.Datetime.now, required = True)
     enrollment_date = fields.Date(string="Fecha de alta", default=fields.Date.today)
     is_boolean = fields.Boolean(string="Es Booleano")
@@ -39,7 +40,7 @@ class modulo2_modelo(models.Model):
 
     def _compute_password(self):
         for record in self:
-            record.password = "12345"
+            record.password = secrets.token_urlsafe(8)
 
 #     value2 = fields.Float(compute="_value_pc", store=True)
 #     description = fields.Text()
