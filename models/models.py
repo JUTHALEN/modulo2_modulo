@@ -24,6 +24,7 @@ class modulo2_modelo(models.Model):
     _name = 'modulo1.modulo'
     _inherit = 'modulo1.modulo'
     _description = 'Modelo extendido'
+    name = fields.Char(string="Dirección")
     description = fields.Text(string="Descripción", default="Descripción por defecto")
     description2 = fields.Html(string="Descripción HTML")
 
