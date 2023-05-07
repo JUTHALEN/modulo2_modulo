@@ -51,10 +51,17 @@ class modulo2_modelo(models.Model):
         selection=[('1', 'Opción 1'), ('2', 'Opción 2'), ('3', 'Opción 3')])
 
     @api.constrains('value')
-    def _check_name(self):
+    def _check_edad(self):
         for record in self:
             if record.value < 18:
                 raise models.ValidationError("Debe ser mayor de edad")
+    
+    _sql_constraints = [
+        ('edad_unica',
+        'unique(value)',
+        'La edad debe ser única'),
+    ]
+
 
 #     value2 = fields.Float(compute="_value_pc", store=True)
 #     description = fields.Text()
