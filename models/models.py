@@ -28,7 +28,7 @@ class modulo2_modelo(models.Model):
     description = fields.Text(string="Descripción", default="Descripción por defecto")
     description2 = fields.Html(string="Descripción HTML")
 
-    password = fields.Char(string="Contraseña", required = True)
+    password = fields.Char(string="Contraseña", required = True, compute='_compute_password', inverse='_inverse_password', store=True)
     last_login = fields.Datetime(string="Último login", default=fields.Datetime.now, required = True)
     enrollment_date = fields.Date(string="Fecha de alta", default=fields.Date.today)
     is_boolean = fields.Boolean(string="Es Booleano")
@@ -37,6 +37,9 @@ class modulo2_modelo(models.Model):
         string="Opciones",
         selection=[('1', 'Opción 1'), ('2', 'Opción 2'), ('3', 'Opción 3')])
 
+    def _compute_password(self):
+        for record in self:
+            record.password = "12345"
 
 #     value2 = fields.Float(compute="_value_pc", store=True)
 #     description = fields.Text()
