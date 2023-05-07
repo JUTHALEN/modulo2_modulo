@@ -1,0 +1,74 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition MODEL DEBE SER IGUAL AL _NAME DEL MODULO-->
+
+    <record model="ir.ui.view" id="modulo2_provincia_tree">
+      <field name="name">Vista arbol de provincia</field>
+      <field name="model">modulo2.provincia</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="description"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="modulo2_direccion_tree">
+      <field name="name">Vista arbol de direccion</field>
+      <field name="model">modulo2.direccion</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="provincia_id"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- actions opening views on models RES_MODEL DEBE SER IGUAL AL _NAME DEL MODULO-->
+    <record model="ir.actions.act_window" id="modulo2_provincia_action_window">
+      <field name="name">Accion de ventana para modulo2.provincia</field>
+      <field name="res_model">modulo2.provincia</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="modulo2_direccion_action_window">
+      <field name="name">Accion de ventana para modulo2.direccion</field>
+      <field name="res_model">modulo2.direccion</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- server action to the one above Las acciones de servidor no las hemos visto-->
+
+    <record model="ir.actions.server" id="modulo_sge.action_server">
+      <field name="name">moduloSGE server</field>
+      <field name="model_id" ref="model_modulo_sge_modulo_sge"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+
+
+    <!-- Top menu item AQUI DEFINIMOS COMO QUEREMOS QUE APAREZCA NUESTRO MENÚ -->
+    <!-- Como no queremos que nos vuelva a salir este modulo en los cuadritos sino como pestañas
+    en el modulo1, el creado anteriormente, lo vamos a dejar así, pero el id si que hay que tenerlo en cuenta: -->
+    <!-- <menuitem name="Módulo1" id="modulo1_menu_root"/> -->
+
+    <!-- menu categories AQUI ESTO DEBE SER IGUAL:  id == parent-->
+    <!-- En parent como tenemos que hacer referencia al otro modulo, hay que usar punto: -->
+
+    <menuitem name="Provincia" id="modulo2_provincia_menu_1" parent="modulo1.modulo1_menu_root"/>
+    <menuitem name="Direccion" id="modulo2_direccion_menu_1" parent="modulo1.modulo1_menu_root"/>
+
+    <!-- actions -->
+    <menuitem name="Ver provincias" id="modulo2_provincia_menu_1_list" parent="modulo2_provincia_menu_1"
+              action="modulo2_provincia_action_window"/>
+    <menuitem name="Ver direcciones" id="modulo2_direccion_menu_1_list" parent="modulo2_direccion_menu_1"
+              action="modulo2_direccion_action_window"/>
+
+  </data>
+</odoo>
