@@ -16,7 +16,7 @@ class modulo2_direccion(models.Model):
 
     name = fields.Char(string="Dirección")
     provincia_id = fields.Many2one(
-        comodel_name='modulo2.provincias', 
+        comodel_name='modulo2.provincia', 
         string="Provincia", 
         ondelete='restrict')
 
