@@ -51,6 +51,7 @@
             <field name="is_boolean"/>
             <field name="photo" widget="image"/>
             <field name="choice"/>
+            <field name="dni"/>
         </field>  
       </field>
     </record>
@@ -76,6 +77,7 @@
               <field name="is_boolean" id="is_boolean"/>
               <field name="photo" id="photo" widget="image"/>
               <field name="choice" id="choice"/>
+              <field name="dni" id="dni"/>
               <separator/>
             </group>
           </sheet>
