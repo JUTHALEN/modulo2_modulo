@@ -2,6 +2,7 @@
 
 from odoo import models, fields, api
 import secrets
+from odoo.exceptions import ValidationError
 
 class modulo2_provincia(models.Model):
     _name = 'modulo2.provincia'
@@ -49,7 +50,11 @@ class modulo2_modelo(models.Model):
         string="Opciones",
         selection=[('1', 'Opción 1'), ('2', 'Opción 2'), ('3', 'Opción 3')])
 
-    
+    @api.constrains('value')
+    def _check_name(self):
+        for record in self:
+            if record.value < 18:
+                raise models.ValidationError("Debe ser mayor de edad")
 
 #     value2 = fields.Float(compute="_value_pc", store=True)
 #     description = fields.Text()
