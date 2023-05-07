@@ -56,9 +56,8 @@
     </record>
 
     <record model="ir.ui.view" id="modulo1_modulo_form_inherit">
-      <field name="name">modulo1_modulo_form_inherit</field>
+      <field name="name">modulo1_form_inherit</field>
       <field name="model">modulo1.modulo</field>
-      <field name='inherit_id' ref='modulo1.modulo1_modelo_form'></field>
       <field name="arch" type="xml">
         <form modifiers="{}">
           <sheet string="Modelo extendido" modifiers="{}">
