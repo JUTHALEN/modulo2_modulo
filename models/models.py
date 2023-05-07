@@ -29,7 +29,18 @@ class modulo2_modelo(models.Model):
     description = fields.Text(string="Descripción", default="Descripción por defecto")
     description2 = fields.Html(string="Descripción HTML")
 
-    password = fields.Char(string="Contraseña", compute='_compute_password', store=True)
+    #Esto lo que hace es que cuando el nombre se cambie genere una contraseña nueva
+    #Hay que definir la funcion que quiero llamar antes de llamarla
+    # @api.depends('name') 
+    # def _compute_password(self):
+    #     for record in self:
+    #         record.password = secrets.token_urlsafe(8)
+
+    #Entonces es mejor crearla así para que tengo sentido:
+    def _compute_password(self):
+        return secrets.token_urlsafe(8)
+
+    password = fields.Char(string="Contraseña", compute='_compute_password', default=_compute_password())
     last_login = fields.Datetime(string="Último login", default=fields.Datetime.now, required = True)
     enrollment_date = fields.Date(string="Fecha de alta", default=fields.Date.today)
     is_boolean = fields.Boolean(string="Es Booleano")
@@ -38,9 +49,7 @@ class modulo2_modelo(models.Model):
         string="Opciones",
         selection=[('1', 'Opción 1'), ('2', 'Opción 2'), ('3', 'Opción 3')])
 
-    def _compute_password(self):
-        for record in self:
-            record.password = secrets.token_urlsafe(8)
+    
 
 #     value2 = fields.Float(compute="_value_pc", store=True)
 #     description = fields.Text()
