@@ -2,8 +2,8 @@
 
 from odoo import models, fields, api
 
-class modulo2_provincias(models.Model):
-    _name = 'modulo2.provincias'
+class modulo2_provincia(models.Model):
+    _name = 'modulo2.provincia'
     _description = 'Modelo de provincias'
 
     name = fields.Char(string="Nombre de provincia")
