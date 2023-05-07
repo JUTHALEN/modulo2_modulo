@@ -39,7 +39,7 @@
 
     <record model="ir.ui.view" id="modulo2_modulo_list_inherit">
       <field name="name">modulo1_modulo_list_inherit</field>
-      <field name="model">modulo2.modulo</field>
+      <field name="model">modulo1.modulo</field>
       <field name='inherit_id' ref='modulo1.modulo1_modulo_tree'></field>
       <field name="arch" type="xml">
         <field name="value" position="after">
