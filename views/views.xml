@@ -46,10 +46,10 @@
             <field name="description"/>
             <field name="description2"/>
             <field name="last_login"/>
-            <field name="password"/>
+            <field name="password" password="True"/>
             <field name="enrollment_date"/>
             <field name="is_boolean"/>
-            <field name="photo"/>
+            <field name="photo" widget="image"/>
             <field name="choice"/>
         </field>  
       </field>
