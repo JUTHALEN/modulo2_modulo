@@ -37,8 +37,8 @@ class modulo2_modelo(models.Model):
     #         record.password = secrets.token_urlsafe(8)
 
     #Entonces es mejor crearla así para que tengo sentido:
-    def _compute_password():
-        return secrets.token_urlsafe(8)
+    # def _compute_password():
+    #     return secrets.token_urlsafe(8)
 
     password = fields.Char(string="Contraseña", compute='_compute_password', default=lambda s: secrets.token_urlsafe(8))
     last_login = fields.Datetime(string="Último login", default=fields.Datetime.now, required = True)
