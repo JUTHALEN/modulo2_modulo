@@ -28,7 +28,7 @@ class modulo2_modelo(models.Model):
     description = fields.Text(string="Descripción", default="Descripción por defecto")
     description2 = fields.Html(string="Descripción HTML")
 
-    password = fields.Char(string="Contraseña", required = True, compute='_compute_password', inverse='_inverse_password', store=True)
+    password = fields.Char(string="Contraseña", required = True, compute='_compute_password')
     last_login = fields.Datetime(string="Último login", default=fields.Datetime.now, required = True)
     enrollment_date = fields.Date(string="Fecha de alta", default=fields.Date.today)
     is_boolean = fields.Boolean(string="Es Booleano")

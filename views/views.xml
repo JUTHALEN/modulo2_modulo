@@ -59,24 +59,24 @@
       <field name="name">modulo1_form_inherit</field>
       <field name="model">modulo1.modulo</field>
       <field name="arch" type="xml">
-        <form modifiers="{}">
+        <form>
           <sheet string="Modelo extendido" modifiers="{}">
             <group col="4" modifiers="{}">
-              <field name="value" modifiers="{}" id="value"/>
-              <field name="name" modifiers="{'required':true}" id="name"/>
-              <newline modifiers="{}"/>
+              <field name="value" id="value"/>
+              <field name="name" id="name"/>
+              <newline/>
               <field name="description" colspan="4" modifiers="{}" id="description"/>
-              <newline modifiers="{}"/>
-              <newline modifiers="{}"/>
+              <newline/>
+              <newline/>
               <field name="description2" colspan="4" modifiers="{}" id="description2"/>
-              <newline modifiers="{}"/>
-              <field name="password" modifiers="{'required':true}" id="password" password="True"/>
-              <field name="last_login" modifiers="{'required':true}" id="last_login"/>
-              <field name="enrollment_date" modifiers="{}" id="enrollment_date"/>
-              <field name="is_boolean" modifiers="{}" id="is_boolean"/>
-              <field name="photo" modifiers="{}" id="photo" widget="image"/>
-              <field name="choice" modifiers="{}" id="choice"/>
-              <separator modifiers="{}"/>
+              <newline/>
+              <field name="password" id="password"/>
+              <field name="last_login" id="last_login"/>
+              <field name="enrollment_date"  id="enrollment_date"/>
+              <field name="is_boolean" id="is_boolean"/>
+              <field name="photo" id="photo" widget="image"/>
+              <field name="choice" id="choice"/>
+              <separator/>
             </group>
           </sheet>
         </form>
