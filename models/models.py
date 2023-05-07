@@ -20,6 +20,15 @@ class modulo2_direccion(models.Model):
         string="Provincia", 
         ondelete='restrict')
 
+class modulo2_modelo(models.Model):
+    _name = 'modulo1.modulo'
+    _inherit = 'modulo1.modulo'
+    _description = 'Modelo extendido'
+
+    name = fields.Char(string="Dirección")
+    description = fields.Text(string="Descripción", default="Descripción por defecto")
+    description = fields.Html(string="Descripción HTML")
+
 #     value2 = fields.Float(compute="_value_pc", store=True)
 #     description = fields.Text()
 #
