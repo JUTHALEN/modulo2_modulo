@@ -37,7 +37,7 @@ class modulo2_modelo(models.Model):
     #         record.password = secrets.token_urlsafe(8)
 
     #Entonces es mejor crearla así para que tengo sentido:
-    def _compute_password(self):
+    def _compute_password():
         return secrets.token_urlsafe(8)
 
     password = fields.Char(string="Contraseña", compute='_compute_password', default=_compute_password())
