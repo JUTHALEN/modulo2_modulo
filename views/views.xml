@@ -17,11 +17,11 @@
       <field name="name">Vista arbol de direccion</field>
       <field name="model">modulo2.direccion</field>
       <field name="arch" type="xml">
-        <field name ='value' position ='after'>
-          <field name="description"/>
-          <field name="description2"/>
-        </field>  
-      </field>
+        <tree>
+          <field name="name"/>
+          <field name="provincia_id"/>
+        </tree>
+      </field>      
     </record>
 
     <record model="ir.ui.view" id="modulo1_modulo_list_inherit">
@@ -29,10 +29,10 @@
       <field name="model">modulo1.modulo1.modulo</field>
       <field name='inherit_id' ref='modulo1.modulo1_modelo_tree'></field>
       <field name="arch" type="xml">
-        <tree>
-          <field name="name"/>
-          <field name="provincia_id"/>
-        </tree>
+        <field name ='value' position ='after'>
+          <field name="description"/>
+          <field name="description2"/>
+        </field>  
       </field>
     </record>
 
