@@ -25,7 +25,7 @@ class modulo2_modelo(models.Model):
     _inherit = 'modulo1.modulo'
     _description = 'Modelo extendido'
     description = fields.Text(string="Descripción", default="Descripción por defecto")
-    description = fields.Html(string="Descripción HTML")
+    description2 = fields.Html(string="Descripción HTML")
 
 #     value2 = fields.Float(compute="_value_pc", store=True)
 #     description = fields.Text()
