@@ -28,6 +28,15 @@ class modulo2_modelo(models.Model):
     description = fields.Text(string="Descripción", default="Descripción por defecto")
     description2 = fields.Html(string="Descripción HTML")
 
+    password = fields.Char(string="Contraseña", required = True)
+    last_login = fields.Datetime(string="Último login", default=fields.Datetime.now, required = True)
+    enrollment_date = fields.Date(string="Fecha de alta", default=fields.Date.today)
+    is_boolean = fields.Boolean(string="Es Booleano")
+    photo = fields.Image(max_width=100, max_height=100)
+    choice = fields.Selection(
+        string="Opciones",
+        selection=[('1', 'Opción 1'), ('2', 'Opción 2'), ('3', 'Opción 3')])
+
 
 #     value2 = fields.Float(compute="_value_pc", store=True)
 #     description = fields.Text()

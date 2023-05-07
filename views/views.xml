@@ -37,7 +37,7 @@
       <field name="view_mode">tree,form</field>
     </record>
 
-    <record model="ir.ui.view" id="modulo2_modulo_list_inherit">
+    <record model="ir.ui.view" id="modulo1_modulo_list_inherit">
       <field name="name">modulo1_modulo_list_inherit</field>
       <field name="model">modulo1.modulo</field>
       <field name='inherit_id' ref='modulo1.modulo1_modelo_tree'></field>
@@ -45,6 +45,12 @@
         <field name="value" position="after">
             <field name="description"/>
             <field name="description2"/>
+            <field name="last_login"/>
+            <field name="password"/>
+            <field name="enrollment_date"/>
+            <field name="is_boolean"/>
+            <field name="photo"/>
+            <field name="choice"/>
         </field>  
       </field>
     </record>
