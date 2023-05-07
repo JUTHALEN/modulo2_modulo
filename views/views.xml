@@ -42,10 +42,10 @@
       <field name="model">modulo1.modulo</field>
       <field name='inherit_id' ref='modulo1.modulo1_modelo_tree'></field>
       <field name="arch" type="xml">
-        <field name ='value' position ='after'>
-          <field name="description"/>
-          <field name="description2"/>
-        </field>  
+        <xpath expr="//field[@name='value']" position="after">
+            <field name="description"/>
+            <field name="description2"/>
+        </xpath>  
       </field>
     </record>
 
