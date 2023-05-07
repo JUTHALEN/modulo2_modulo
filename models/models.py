@@ -50,6 +50,7 @@ class modulo2_modelo(models.Model):
         string="Opciones",
         selection=[('1', 'Opción 1'), ('2', 'Opción 2'), ('3', 'Opción 3')])
 
+    dni = fields.Char(string="DNI", size=9)
     @api.constrains('value')
     def _check_edad(self):
         for record in self:
@@ -57,10 +58,13 @@ class modulo2_modelo(models.Model):
                 raise models.ValidationError("Debe ser mayor de edad")
     
     _sql_constraints = [
-        ('edad_unica',
-        'unique(value)',
-        'La edad debe ser única'),
+        ('dni_unique',
+        'UNIQUE(dni)',
+        "El DNI debe ser único"),
     ]
+    
+    
+    
 
 
 #     value2 = fields.Float(compute="_value_pc", store=True)
