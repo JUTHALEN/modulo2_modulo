@@ -40,7 +40,7 @@ class modulo2_modelo(models.Model):
     def _compute_password():
         return secrets.token_urlsafe(8)
 
-    password = fields.Char(string="Contraseña", compute='_compute_password', default=_compute_password())
+    password = fields.Char(string="Contraseña", compute='_compute_password', default='_compute_password')
     last_login = fields.Datetime(string="Último login", default=fields.Datetime.now, required = True)
     enrollment_date = fields.Date(string="Fecha de alta", default=fields.Date.today)
     is_boolean = fields.Boolean(string="Es Booleano")
