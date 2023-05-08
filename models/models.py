@@ -4,76 +4,70 @@ from odoo import models, fields, api
 import secrets
 from odoo.exceptions import ValidationError
 
-class modulo2_provincia(models.Model):
-    _name = 'modulo2.provincia'
-    _description = 'Modelo de provincias'
+class modulo_clase(models.Model):
+    _name = 'modulo.clase'
+    _description = 'clase'
 
-    name = fields.Char(string="Nombre de provincia")
-    description = fields.Text(string="Descripción")
-
-
-class modulo2_direccion(models.Model):
-    _name = 'modulo2.direccion'
-    _description = 'Modelo de dirección'
-
-    name = fields.Char(string="Dirección")
-    provincia_id = fields.Many2one(
-        comodel_name='modulo2.provincia', 
-        string="Provincia", 
+    name = fields.Char(string="Nombre")
+    description = fields.Text(string="Tipo de aula")
+    fecha = fields.Date(string="Fecha")
+    hora_inicio = fields.Datetime(string="Hora de inicio")
+    hora_fin = fields.Datetime(string="Hora de fin")
+    profesor_id = fields.Many2one(
+        comodel_name='modulo.profesor', 
+        string="Profesor", 
         ondelete='restrict')
-
-class modulo2_modelo(models.Model):
-    _name = 'modulo1.modulo'
-    _inherit = 'modulo1.modulo'
-    _description = 'Modelo extendido'
-    name = fields.Char(string="Dirección")
-    description = fields.Text(string="Descripción", default="Descripción por defecto")
-    description2 = fields.Html(string="Descripción HTML")
-
-    #Esto lo que hace es que cuando el nombre se cambie genere una contraseña nueva
-    #Hay que definir la funcion que quiero llamar antes de llamarla
-    # @api.depends('name') 
-    # def _compute_password(self):
-    #     for record in self:
-    #         record.password = secrets.token_urlsafe(8)
-
-    #Entonces es mejor crearla así para que tengo sentido:
-    # def _compute_password():
-    #     return secrets.token_urlsafe(8)
-
-    password = fields.Char(string="Contraseña", default=lambda s: secrets.token_urlsafe(8))
-    last_login = fields.Datetime(string="Último login", default=fields.Datetime.now, required = True)
-    enrollment_date = fields.Date(string="Fecha de alta", default=fields.Date.today)
-    is_boolean = fields.Boolean(string="Es Booleano")
-    photo = fields.Image(max_width=100, max_height=100)
-    choice = fields.Selection(
-        string="Opciones",
-        selection=[('1', 'Opción 1'), ('2', 'Opción 2'), ('3', 'Opción 3')])
-
-    dni = fields.Char(string="DNI", size=9)
-    direccion_ids = fields.Many2many(comodel_name='modulo2.direccion') 
-
-    @api.constrains('value')
-    def _check_edad(self):
+    alumno_ids = fields.Many2many(
+        comodel_name='res.partner', 
+        string="Alumnos", 
+        ondelete='restrict')
+    
+    #la hora de inicio debe ser menor que la hora de fin
+    @api.constrains('hora_inicio', 'hora_fin')
+    def _check_hora(self):
         for record in self:
-            if record.value < 18:
-                raise models.ValidationError("Debe ser mayor de edad")
+            if record.hora_inicio > record.hora_fin:
+                raise models.ValidationError("La hora de inicio debe ser menor que la hora de fin")
+
+class modulo_profesor(models.Model):
+    _name = 'modulo.profesor'
+    _description = 'Profesor'
+
+    name = fields.Char(string="Nombre")
+    apellidos = fields.Char(string="Apellidos")
+    email = fields.Char(string="Email")
+    fecha_nacimiento = fields.Date(string="Fecha de nacimiento")
+    clases_ids = fields.One2many(
+        comodel_name='modulo.clase', 
+        inverse_name='profesor_id', 
+        string="Clases", 
+        ondelete='restrict')
+    
+    #el email debe ser unico:
+    _sql_constraints = [
+        ('email_unique',
+        'UNIQUE(email)',
+        "El email debe ser único"),
+    ]
+
+
+class modulo_alumno(models.Model):
+    _name = 'modulo.alumno'
+    _description = 'alumno'
+    name = fields.Char(string="Nombre")
+    apellidos = fields.Char(string="Apellidos")
+    email = fields.Char(string="Email")
+    photo = fields.Image(max_width=100, max_height=100)
+    fecha_nacimiento = fields.Date(string="Fecha de nacimiento")
+    nivel_estudios  = fields.Selection(
+        [(1, 'Primaria'), (2, 'ESO'), (3, 'Bachillerato')], string="Curso")
+    clases_ids = fields.Many2many(
+        comodel_name='modulo.clase', 
+        string="Clases", 
+        ondelete='restrict')
     
     _sql_constraints = [
-        ('dni_unique',
-        'UNIQUE(dni)',
-        "El DNI debe ser único"),
+        ('email_unique',
+        'UNIQUE(email)',
+        "El email debe ser único"),
     ]
-    
-    
-    
-
-
-#     value2 = fields.Float(compute="_value_pc", store=True)
-#     description = fields.Text()
-#
-#     @api.depends('value')
-#     def _value_pc(self):
-#         for record in self:
-#             record.value2 = float(record.value) / 100
- 
