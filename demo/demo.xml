@@ -28,7 +28,7 @@
     <record id="modelo0" model="modulo1.modulo">
       <field name="name">Una direccion</field>
       <field name="description">La descripcion 0</field>
-      <field name="last_login" eval="(datetime.now()).strftime('')"/>
+      <field name="last_login" eval="(datetime.now()).strftime('%Y-%m-%d')"/>
     </record>
 <!--
           <record id="object0" model="modulo_sge.modulo_sge">
