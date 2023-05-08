@@ -19,11 +19,11 @@
     </record>
     <record id="direccion1" model="modulo2.direccion">
       <field name="name">una calle cualquiera</field>
-      <field name="provincia_id" red="modulo1.provincia1"></field>
+      <field name="provincia_id" ref="provincia1"></field>
     </record>
     <record id="direccion2" model="modulo2.direccion">
       <field name="name">otr calle cualquiera</field>
-      <field name="provincia_id" red="modulo1.provincia2"></field>
+      <field name="provincia_id" ref="provincia2"></field>
     </record>
 <!--
           <record id="object0" model="modulo_sge.modulo_sge">
