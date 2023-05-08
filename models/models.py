@@ -52,8 +52,7 @@ class modulo2_modelo(models.Model):
 
     dni = fields.Char(string="DNI", size=9)
     direcion_ids = fields.Many2many(
-        comodel_name='modulo2.direccion',
-        string="Direcciones")
+        comodel_name='modulo2.direccion') 
     @api.constrains('value')
     def _check_edad(self):
         for record in self:
