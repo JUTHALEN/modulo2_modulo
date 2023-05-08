@@ -29,7 +29,8 @@
       <field name="name">Una direccion</field>
       <field name="description">La descripcion 0</field>
       <field name="last_login" eval="(datetime.now()).strftime('%Y-%m-%d')"/>
-      <field name="direccion_ids" eval="[(6,0,[direccion1,direccion2])]"/>
+      <field name="photo" file="modulo2_modulo/static/fotos/foto.jpg" type="base64"/>
+      <field name="direccion_ids" eval="[(6,0,[ref('direccion2')])]"/>      
     </record>
 <!--
           <record id="object0" model="modulo_sge.modulo_sge">
