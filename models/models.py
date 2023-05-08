@@ -51,7 +51,8 @@ class modulo2_modelo(models.Model):
         selection=[('1', 'Opción 1'), ('2', 'Opción 2'), ('3', 'Opción 3')])
 
     dni = fields.Char(string="DNI", size=9)
-    direcion_ids = fields.Many2many('modulo2.direccion') 
+    direccion_ids = fields.Many2many('modulo2.direccion') 
+    
     @api.constrains('value')
     def _check_edad(self):
         for record in self:
